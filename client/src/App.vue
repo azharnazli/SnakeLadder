@@ -1,4 +1,3 @@
-
 <template>
   <v-app>
     <Navbar>
@@ -14,7 +13,6 @@
   import Footer from './components/Footer'
   import Navbar from './components/Navbar'
 
-<<<<<<< HEAD
 export default {
   name: 'App',
   components: {
@@ -28,19 +26,4 @@ export default {
     }
   }
 }
-=======
-  export default {
-    name: 'App',
-    components: {
-      Footer,
-      Navbar
-
-    },
-    data() {
-      return {
-        //
-      }
-    }
-  }
->>>>>>>  add room
 </script>
