@@ -1,3 +1,4 @@
+
 <template>
   <v-app>
     <Navbar>
@@ -18,7 +19,7 @@ export default {
   components: {
     Footer,
     Navbar
-
+    
   },
   data () {
     return {
