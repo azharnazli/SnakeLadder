@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import GameBoard from './views/Game-board.vue'
 import ReadyBoard from './views/readyBoard.vue'
 import ShowRoom from './views/ShowRoom.vue'
+import SignUp from './views/signUp.vue'
 
 Vue.use(Router)
 
@@ -24,10 +25,16 @@ export default new Router({
       path: '/readyBoard/:id',
       name: 'readyBoard',
       component: ReadyBoard,
-    }, {
+    }, 
+    {
       path: '/showroom',
       name: 'ShowRoom',
       component: ShowRoom
+    },
+    {
+      path: '/sign-up',
+      name: 'SignUp',
+      component: SignUp
     }
   ]
 })
