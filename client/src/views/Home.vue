@@ -1,5 +1,9 @@
 <template>
+<<<<<<< HEAD
   <v-form v-model="valid">
+=======
+  <v-form >
+>>>>>>> Add Firebase authentication
     <v-container>
       <v-layout>
         <v-flex xs12 md4>
@@ -8,11 +12,11 @@
           </div>
         </v-flex>
         <v-flex xs12 md4>
-          <v-text-field v-model="username" :rules="nameRules" :counter="10" label="Username" required></v-text-field>
-          <v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
+          <v-text-field v-model="email" label="E-mail"></v-text-field>
+          <v-text-field type="password" v-model="password" label="Password"></v-text-field>
           <router-link to='/showRoom' style="textDecoration: none">
           <div class="text-xs-center">
-            <v-btn flat class="success px-0 mx-0 mt-3 " @click="register">START</v-btn>
+            <v-btn flat class="success px-0 mx-0 mt-3 " @click="Login">Let's Play</v-btn>
           </div>
           </router-link>
         </v-flex>
@@ -28,22 +32,14 @@
 </template>
 
 <script>
-  import db from '@/firebase.js'
+  import firebase from 'firebase'
 
   export default {
+    name: 'login',
     data() {
       return {
-        valid: false,
-        username: '',
-        nameRules: [
-          v => !!v || 'Name is required',
-          v => v.length <= 10 || 'Name must be less than 10 characters'
-        ],
         email: '',
-        emailRules: [
-          v => !!v || 'E-mail is required',
-          v => /.+@.+/.test(v) || 'E-mail must be valid'
-        ]
+        password: ''
       }
     },
     methods: {
@@ -72,8 +68,19 @@
     },
     created() {
       this.checkLocal()
+      Login: function() {
+        firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+          .then(
+            function(user) {
+              alert(`You can start to play now !`)
+            },
+            function(err) {
+              console.log('masukkk kesini')
+              alert(`Oops.` + err.message)
+            }
+          )
+      }
     }
-
   }
 </script>
 

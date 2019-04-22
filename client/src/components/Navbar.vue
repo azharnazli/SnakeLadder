@@ -13,7 +13,7 @@ export default {
     checkLocalStorage() {
       console.log('masukl')
       if(!localStorage.getItem('id')) {
-        this.$router.push('/')
+        // this.$router.push('/')
       }
     }
   },
