@@ -9,10 +9,8 @@
           <p class="text-xs-center">{{ room.name }}</p>
           <div class="center">
             <p class="text-xs-center">Enter Room</p>
-            <v-btn 
-            @click="enterRoom(`${room.id}`)"
-            :id="room.id"
-            class="center-item" color="primary">{{ room.slot }}/{{room.maxSlot}}
+            <v-btn @click="enterRoom(`${room.id}`)" :roomId="room.id" class="center-item" color="primary">
+              {{ room.slot }}/{{room.maxSlot}}
             </v-btn>
           </div>
         </div>
@@ -32,24 +30,27 @@
       enterRoom(id) {
         let room = {}
         db.collection('rooms').doc(id).get()
-        .then((doc)=> {
-          room.id = doc.id
-          Object.assign(room,doc.data())
-        })
-        .then(()=> {
-          room.slot++
-          room.players.push(localStorage.getItem('id'))
-          db.collection('rooms').doc(id).set(room)
-        })
-        .then(data => {
-          this.$router.push('readyBoard/'+ id)
-        })
+          .then((doc) => {
+            room.id = doc.id
+            Object.assign(room, doc.data())
+          })
+          .then(() => {
+            room.slot++
+            room.players.push(localStorage.getItem('id'))
+            db.collection('rooms').doc(id).set(room)
+          })
+          .then(data => {
+            this.$router.push('readyBoard/' + id)
+          })
       },
       createRoom() {
         db.collection('rooms').add({
             name: 'snake ladder',
             slot: 0,
-            maxSlot: 4
+            maxSlot: 4,
+            players: [],
+            count: 0,
+            ready: 0
           })
           .then((doc) => {
             console.log(doc)

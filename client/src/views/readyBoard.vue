@@ -31,17 +31,19 @@ import db from '../firebase';
     },
     methods: {
       getRoom() {
-        console.log(this.$route.params.id)
-        db.collection('rooms').doc(this.$route.params.id).get()
-        .then(doc => {
-          this.room = doc.data()
-        })
-        .catch(err => {
-          console.log(err)
+        db.collection('rooms').doc(this.$route.params.id).onSnapshot((data)=>{
+          this.room = data.data()
         })
       },
       ready() {
         this.room.ready++
+        if(this.room.position === undefined ) {
+          this.room.position = {}
+          this.room.position[`${this.myId}`] = 0
+        } else {
+          this.room.position[`${this.myId}`] = 0
+        }
+        console.log(this.room)
         db.collection('rooms').doc(this.$route.params.id).set(this.room)
         .then((data)=> {
           console.log(data)
@@ -58,7 +60,7 @@ import db from '../firebase';
     watch: {
       room() {
         if(this.room.ready == 4) {
-          this.$router.push('/game-board')
+          this.$router.push('/game-board/'+ this.$route.params.id)
         }
       }
     }
