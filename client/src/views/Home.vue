@@ -54,8 +54,9 @@
             username: this.username,
             email: this.email
           })
-          .then((doc) => {
-            console.log(`Register new User with ID`, doc.id)
+          .then(function (doc) {
+            localStorage.setItem('id', doc.id)
+            console.log(`Register new User with ID`, doc)
           })
           .catch(err => {
             console.log(`Error registering new Player`, err)

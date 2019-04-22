@@ -21,7 +21,7 @@ export default new Router({
       component: GameBoard
     },
     {
-      path: '/readyBoard',
+      path: '/readyBoard/:id',
       name: 'readyBoard',
       component: ReadyBoard,
     }, {
