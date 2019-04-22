@@ -8,7 +8,6 @@
             <h3>Let's Play Game</h3>
           </div>
         </v-flex>
-
         <v-flex xs12 md4>
           <v-text-field v-model="username" :rules="nameRules" :counter="10" label="Username" required></v-text-field>
           <v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
@@ -18,7 +17,7 @@
           </div>
           </router-link>
         </v-flex>
-              
+
         <v-flex xs12 md4>
           <div class="text-xs center">
             <h3>Play Gameeee</h3>
@@ -27,6 +26,7 @@
       </v-layout>
     </v-container>
   </v-form>
+
 </template>
 
 <script>
@@ -50,17 +50,21 @@
     },
     methods: {
       register() {
-        db.collection('snakeLadder').add({
-            username: this.username,
-            email: this.email
-          })
-          .then(function (doc) {
-            localStorage.setItem('id', doc.id)
-            console.log(`Register new User with ID`, doc)
-          })
-          .catch(err => {
-            console.log(`Error registering new Player`, err)
-          })
+
+        if(this.username == "" || this.email == "" || this.username == null || this.email == null)  {
+          console.log('Username / Email is required')
+        } else {
+          db.collection('snakeLadder').add({
+              username: this.username,
+              email: this.email
+            })
+            .then((doc) => {
+              console.log(`Register new User with ID`, doc.id)
+            })
+            .catch(err => {
+              console.log(`Error registering new Player`, err)
+            })
+        }
       },
 
     }
