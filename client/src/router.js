@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import GameBoard from './views/Game-board.vue'
-import ShowRoom from './views/ShowRoom.vue'
+import ReadyBoard from './views/readyBoard.vue'
 
 Vue.use(Router)
 
@@ -21,9 +21,9 @@ export default new Router({
       component: GameBoard
     },
     {
-      path: '/showRoom',
-      name: 'ShowRoom',
-      component: ShowRoom
+      path: '/readyBoard',
+      name: 'readyBoard',
+      component: ReadyBoard,
     }
   ]
 })

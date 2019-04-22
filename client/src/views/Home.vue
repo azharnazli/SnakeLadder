@@ -5,9 +5,8 @@
       <v-layout>
         <v-flex xs12 md4>
           <div class="text-xs-center">
-            
+            <h3>Let's Play Game</h3>
           </div>
-          <h3 class="text-md-center">Let's Play Game</h3>
         </v-flex>
 
         <v-flex xs12 md4>
@@ -19,9 +18,11 @@
           </div>
           </router-link>
         </v-flex>
-
+              
         <v-flex xs12 md4>
-          <h3 class="text-md-center">Play Gameeee</h3>
+          <div class="text-xs center">
+            <h3>Play Gameeee</h3>
+          </div>
         </v-flex>
       </v-layout>
     </v-container>
