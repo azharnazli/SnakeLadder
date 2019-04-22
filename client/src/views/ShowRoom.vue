@@ -1,38 +1,30 @@
 <template>
-  <v-container>
+  <div>
     <BoxRoom 
-    v-for=" room in rooms "
-    :key="room.id"
-    :room="room" />
-  </v-container>
+    :rooms="rooms" />
+  </div>
 </template>
 <script>
 import BoxRoom from '../components/BoxRoom'
 import db from '../firebase.js'
+import { mapState } from 'vuex'
 export default {
   data() {
     return {
-      rooms: []
-    }
+      
+
+  }
   },
   components: {
     BoxRoom
   },
   created(){
-    this.fetchRooms()
+    this.$store.dispatch('fetchRooms')
   },
   methods: {
-    fetchRooms() {
-      db.collection('rooms')
-        .onSnapshot(({docs}) => {
-          docs.forEach( el => {
-            this.rooms.push({
-              id: el.id,
-              ...el.data()
-            })
-          })
-        })
-    }
-  }
+    
+  },
+  computed: mapState(['rooms'])
+
 }
 </script>

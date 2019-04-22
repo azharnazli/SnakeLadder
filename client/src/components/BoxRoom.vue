@@ -1,26 +1,64 @@
 <template>
-  <div class="container">
-    <div>
-      <div class="box">
-        <p class="text-xs-center">{{ room.name }}</p>
-        <v-btn style="display:flex;" class="align-center" color="primary">ENTER</v-btn>
-      </div>
-    </div>
-  </div>
+  <v-container>
+    <v-btn @click="createRoom">
+      create room
+    </v-btn>
+    <v-layout row wrap class="top-margin">
+      <v-flex v-for="room in rooms" :key="room.id" offset-xs1>
+        <div class="boxes">
+          <p class="text-xs-center">{{ room.name }}</p>
+          <div class="center">
+            <p class="text-xs-center">Enter Room</p>
+            <v-btn @click="enterRoom(`${room.id}`)" class="center-item" color="primary">{{ room.slot }}/{{room.maxSlot}}
+            </v-btn>
+          </div>
+        </div>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
+
+
 <script>
+  import db from '../firebase.js'
+
   export default {
-    props: ['room']
+    props: ['rooms'],
+    methods: {
+      enterRoom(id) {
+        console.log(id)
+      },
+      createRoom() {
+        db.collection('rooms').add({
+            name: 'snake ladder',
+            slot: 0,
+            maxSlot: 4
+          })
+          .then((doc) => {
+            console.log(doc)
+          })
+          .catch(err => {
+            console.log(err)
+          })
+      }
+    }
   }
 </script>
 <style scoped>
-  .box {
-    height: 280px;
-    width: 280px;
+  .boxes {
+    width: 180px;
+    height: 180px;
+    max-width: 180px !important;
+    max-height: 180px !important;
     border: 1px solid grey;
   }
 
-  .v-btn__content {
-    margin-left: 100px;
+  .center-item {
+    margin: 20 auto;
+    margin-left: 25%;
+  }
+
+  .top-margin {
+    margin-top: 50px;
   }
 </style>
