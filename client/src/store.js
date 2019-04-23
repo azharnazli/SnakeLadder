@@ -19,7 +19,8 @@ export default new Vuex.Store({
     },
     Login(state, payload) {
       state.isLogin = true
-      state.userDetails = localStorage.setItem('email', payload.email)
+      localStorage.setItem('email', payload.email)
+      state.userDetails = payload.email
 
     },
     Logout(state) {
@@ -44,7 +45,8 @@ export default new Vuex.Store({
     verifyLoggedIn() {
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-          // commit
+          console.log('masukkkk')
+          console.log(user)
         } else {
           // No user is signed in.
         }
