@@ -27,15 +27,17 @@
     methods: {
       checkLocalStorage() {
         console.log('masukl')
-        if (!localStorage.getItem('email')) {
-          this.$router.push('/')
+        if(this.$route.path != '/sign-up') {
+          if (!localStorage.getItem('email')) {
+            this.$router.push('/')
+          }
         }
       },
       logout() {
         firebase.auth()
           .signOut()
           .then(() => {
-             this.$router.replace('home') 
+             this.$router.push('/') 
              localStorage.clear()
           })
           .catch(err => {

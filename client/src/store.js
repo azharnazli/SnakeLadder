@@ -20,6 +20,7 @@ export default new Vuex.Store({
     Login(state, payload) {
       state.isLogin = true
       localStorage.setItem('email', payload.email)
+      localStorage.setItem('id', payload.email)
       state.userDetails = payload.email
 
     },
