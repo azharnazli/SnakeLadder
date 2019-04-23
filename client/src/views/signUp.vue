@@ -46,9 +46,13 @@
         firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
         .then(
           (user)=> {
-            // ganti
-            alert('Your account has been created !')
-            // push to "/"
+            this.$swal({
+              position: 'center',
+              type: 'success',
+              title: 'Sign Up Success',
+              showConfirmButton: false,
+              timer: 1500
+            })
           },
            (err)=> {
             this.$swal({
