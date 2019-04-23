@@ -124,7 +124,7 @@
       },
       rollDice() {
         this.data.dice = this.randomizer()
-        // this.data.count++
+        this.data.count++
         this.data.position[`${this.myId}`] += +this.data.dice
         if(this.data.position[`${this.myId}`]>= 36) {
           this.data.position[`${this.myId}`] = 36
