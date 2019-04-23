@@ -8,7 +8,7 @@
           <v-flex xs12 md4>
             <v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
             <v-text-field v-model="password" label="Password" type="password" required></v-text-field>
-            <v-btn @click="signUp"></v-btn>
+            <v-btn @click="signUp">Sign Up</v-btn><br>
             <span>or go back to <router-link to='/'>Login</router-link></span>
           </v-flex>
           <v-flex xs12 md4>
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-  import db from '@/firebase.js'
+  import firebase from 'firebase'
 
   export default {
     name: 'signUp',
@@ -40,14 +40,18 @@
       }
     },
     methods: {
-      signUp: function () {
+      signUp: function() {
         firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
         .then(
           function(user) {
             alert('Your account has been created !')
           },
           function(err) {
-            alert(`Oops.` + err.message)
+            this.$swal({
+              type: 'error',
+              title: 'Oops...',
+              text: `Something went wrong!, ${err}`,
+            })
           }
         )
       }
