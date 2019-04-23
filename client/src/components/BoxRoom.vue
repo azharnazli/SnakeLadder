@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-btn @click="createRoom">
+    <v-btn @click="createRoom" color="blue" class="text-light">
       create room
     </v-btn>
     <v-layout row wrap class="top-margin">

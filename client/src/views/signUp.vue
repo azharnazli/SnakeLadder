@@ -5,7 +5,10 @@
         <v-layout>
           <v-flex xs12 md4>
           </v-flex>
-          <v-flex xs12 md4 style="border: 1px solid #C2C5C3; border-radius: 20px; margin-top: 120px" class="p-5 shadow">
+          <v-flex xs12 md4 style="border: 1px solid #C2C5C3; border-radius: 20px; margin-top: 100px" class="p-5 shadow">
+            <div class="text-xs-center mb-4">
+              <h3>Sign Up</h3>
+            </div>
             <v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
             <v-text-field v-model="password" label="Password" type="password" required></v-text-field>
             <div class="text-center">
