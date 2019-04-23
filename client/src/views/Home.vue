@@ -1,5 +1,4 @@
 <template>
-
   <v-form v-model="valid">
     <v-container>
       <v-layout>
@@ -26,7 +25,6 @@
       </v-layout>
     </v-container>
   </v-form>
-
 </template>
 
 <script>
@@ -66,12 +64,18 @@
             })
         }
       },
-
+      checkLocal() {
+        if(localStorage.getItem('id')) {
+          this.$router.push('/showroom')
+        }
+      }
+    },
+    created() {
+      this.checkLocal()
     }
 
   }
 </script>
 
 <style>
-
 </style>
