@@ -47,7 +47,11 @@
             alert('Your account has been created !')
           },
           function(err) {
-            alert(`Oops.` + err.message)
+            this.$swal({
+              type: 'error',
+              title: 'Oops...',
+              text: `Something went wrong!, ${err}`,
+            })
           }
         )
       }
