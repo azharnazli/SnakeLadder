@@ -59,20 +59,24 @@
 
       <!--  -->
       <div class="col-md-4">
-        <div class="border mb-3"></div>
-        <div class="border mb-3 p-2">
-          <button class="btn btn-info">Play</button>
+        <div class="mb-3 shadow text-light p-2" style="background-color: #F95A7E; border-radius: 5px">
+          Congratulation! You Won...
         </div>
-        <div class="border mb-3 p-2">
-          <button id="dice" :style="hide" @click="rollDice" class="btn btn btn-info">
+        <!-- <div class="border mb-3 p-2">
+          <button class="btn btn-info">Play</button>
+        </div> -->
+        <div class="mb-3">
+          <button id="dice" :style="hide" @click="rollDice" style="margin-bottom: 10px" class="btn btn btn-info">
             <i class="fas fa-dice"></i> Roll Dice
           </button>
-          <i v-if="data.dice == 1" style="font-size: 50px; color: red" class="fas fa-dice-one"></i>
-          <i v-if="data.dice == 2" style="font-size: 50px; color: red" class="fas fa-dice-two"></i>
-          <i v-if="data.dice == 3" style="font-size: 50px; color: red" class="fas fa-dice-three"></i>
-          <i v-if="data.dice == 4" style="font-size: 50px; color: red" class="fas fa-dice-four"></i>
-          <i v-if="data.dice == 5" style="font-size: 50px; color: red" class="fas fa-dice-five"></i>
-          <i v-if="data.dice == 6" style="font-size: 50px; color: red" class="fas fa-dice-six"></i>
+          <div class="shadow text-center" style="padding: 50px 0; border-radius: 10px">
+          <i v-if="data.dice == 1" style="font-size: 90px; color: red" class="fas fa-dice-one"></i>
+          <i v-if="data.dice == 2" style="font-size: 90px; color: red" class="fas fa-dice-two"></i>
+          <i v-if="data.dice == 3" style="font-size: 90px; color: red" class="fas fa-dice-three"></i>
+          <i v-if="data.dice == 4" style="font-size: 90px; color: red" class="fas fa-dice-four"></i>
+          <i v-if="data.dice == 5" style="font-size: 90px; color: red" class="fas fa-dice-five"></i>
+          <i v-if="data.dice == 6" style="font-size: 90px; color: red" class="fas fa-dice-six"></i>
+          </div>
         </div>
       </div>
       <!-- end -->
@@ -89,7 +93,8 @@
         data: [],
         myId: localStorage.getItem('id'),
         playerIdx : '',
-        hide: null
+        hide: null,
+        icon: ['<i class="far fa-smile-beam"></i>', '<i class="fas fa-grin-tongue-wink"></i>']
       }
     },
     methods: {
