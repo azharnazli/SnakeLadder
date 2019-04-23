@@ -1,0 +1,6 @@
+<template>
+  <canvas>
+  </canvas>
+    
+
+</template>

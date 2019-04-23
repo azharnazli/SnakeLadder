@@ -66,7 +66,14 @@
             })
         }
       },
-
+      checkLocal() {
+        if(localStorage.getItem('id')) {
+          this.$router.push('/showroom')
+        }
+      }
+    },
+    created() {
+      this.checkLocal()
     }
 
   }

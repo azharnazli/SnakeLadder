@@ -9,7 +9,8 @@
           <p class="text-xs-center">{{ room.name }}</p>
           <div class="center">
             <p class="text-xs-center">Enter Room</p>
-            <v-btn @click="enterRoom(`${room.id}`)" :roomId="room.id" class="center-item" color="primary">
+            <v-btn :disabled="room.slot == room.maxSlot" @click="enterRoom(`${room.id}`)" :roomId="room.id"
+              class="center-item" color="primary">
               {{ room.slot }}/{{room.maxSlot}}
             </v-btn>
           </div>
@@ -35,8 +36,10 @@
             Object.assign(room, doc.data())
           })
           .then(() => {
-            room.slot++
-            room.players.push(localStorage.getItem('id'))
+            if (room.players.indexOf(localStorage.getItem('id')) == -1) {
+              room.slot++
+              room.players.push(localStorage.getItem('id'))
+            }
             db.collection('rooms').doc(id).set(room)
           })
           .then(data => {
@@ -50,7 +53,10 @@
             maxSlot: 4,
             players: [],
             count: 0,
-            ready: 0
+            ready: 0,
+            dice: 1,
+            isWinner: false,
+            waiting: []
           })
           .then((doc) => {
             console.log(doc)
