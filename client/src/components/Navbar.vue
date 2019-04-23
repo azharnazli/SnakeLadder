@@ -12,7 +12,7 @@
       <span>Logout</span>
       <v-icon right>exit_to_app</v-icon>
     </v-btn>
-    <router-link to='/sign-up' style="textDecoration: none">
+    <router-link to='/sign-up' v-if="!isLogin" style="textDecoration: none">
     <v-btn flat color="success">
       <span>Sign Up</span>
     <v-icon right>exit_to_app</v-icon>
