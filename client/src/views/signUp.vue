@@ -43,10 +43,12 @@
       signUp: function() {
         firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
         .then(
-          function(user) {
+          (user)=> {
+            // ganti
             alert('Your account has been created !')
+            // push to "/"
           },
-          function(err) {
+           (err)=> {
             this.$swal({
               type: 'error',
               title: 'Oops...',

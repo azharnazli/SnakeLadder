@@ -5,7 +5,7 @@
     </v-btn>
     <v-spacer></v-spacer>
     <v-btn flat color="primary">
-      <span>{{ userDetails.email }}</span>
+      <span>{{ myEmail }}</span>
       <v-icon left>sentiment_satisfied_alt</v-icon>
     </v-btn>
     <v-btn flat color="error" @click="logout">
@@ -15,26 +15,28 @@
   </v-toolbar>
 </template>
 <script>
-  import {
-    mapState
-  } from 'vuex'
+  import {  mapState  } from 'vuex'
   import firebase from 'firebase'
 
   export default {
+    data(){
+      return {
+        myEmail: ''
+      }
+    },
     methods: {
       checkLocalStorage() {
         console.log('masukl')
-        if (!localStorage.getItem('id')) {
-          // this.$router.push('/')
-          
+        if (!localStorage.getItem('email')) {
+          this.$router.push('/')
         }
       },
       logout() {
         firebase.auth()
           .signOut()
           .then(() => {
-            this.$router.replace('home')
-
+             this.$router.replace('home') 
+             localStorage.clear()
           })
           .catch(err => {
             this.$swal({
@@ -44,10 +46,14 @@
             })
           })
       },
+      addEmail() {
+        this.myEmail = localStorage.getItem('email')
+      }
 
     },
     created() {
       this.checkLocalStorage()
+      this.addEmail()
     },
     computed: mapState([
       'userDetails',

@@ -1,13 +1,5 @@
 <template>
-<<<<<<< HEAD
-<<<<<<< HEAD
-  <v-form v-model="valid">
-=======
-  <v-form >
->>>>>>> Add Firebase authentication
-=======
   <v-form>
->>>>>>> Authentication update
     <v-container>
       <v-layout>
         <v-flex xs12 md4>
@@ -24,7 +16,7 @@
             </div>
           </router-link>
         </v-flex>
-        
+
         <v-flex xs12 md4>
           <div class="text-xs center">
             <h3>Play Gameeee</h3>
@@ -47,49 +39,15 @@
       }
     },
     methods: {
-
-      register() {
-
-        if(this.username == "" || this.email == "" || this.username == null || this.email == null)  {
-          console.log('Username / Email is required')
-        } else {
-          db.collection('snakeLadder').add({
-              username: this.username,
-              email: this.email
-            })
-            .then((doc) => {
-              console.log(`Register new User with ID`, doc.id)
-            })
-            .catch(err => {
-              console.log(`Error registering new Player`, err)
-            })
-        }
-      },
       checkLocal() {
-        if(localStorage.getItem('id')) {
+        if (localStorage.getItem('id')) {
           this.$router.push('/showroom')
         }
-      }
-    },
-    created() {
-      this.checkLocal()
-      Login: function() {
-        firebase.auth().signInWithEmailAndPassword(this.email, this.password)
-          .then(
-            function(user) {
-              alert(`You can start to play now !`)
-            },
-            function(err) {
-              console.log('masukkk kesini')
-              alert(`Oops.` + err.message)
-            }
-          )
-
+      },
       Login: function () {
         firebase.auth()
           .signInWithEmailAndPassword(this.email, this.password)
           .then(({ user }) => {
-            // console.log(user.email, '-------')
             this.$swal({
               position: 'center',
               type: 'success',
@@ -98,6 +56,8 @@
               timer: 1500
             })
             this.$store.commit('Login', user)
+            this.$router.push('/showroom')
+
           })
           .catch(err => {
             this.$swal({
@@ -106,8 +66,11 @@
               text: `Something went wrong! ${err}`,
             })
           })
->>>>>>> Authentication update
       }
+    },
+    created() {
+      this.checkLocal()
+
     },
   }
 </script>
