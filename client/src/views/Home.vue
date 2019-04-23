@@ -7,7 +7,7 @@
             <h3>Let's Play Game</h3>
           </div>
         </v-flex>
-        <v-flex xs12 md4>
+        <v-flex xs12 md4  style="border: 1px solid #C2C5C3; border-radius: 20px" class="p-5 mt-5">
           <v-text-field v-model="email" label="E-mail"></v-text-field>
           <v-text-field type="password" v-model="password" label="Password"></v-text-field>
           <router-link to='/showRoom' style="textDecoration: none">
