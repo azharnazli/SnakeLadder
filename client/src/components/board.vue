@@ -116,12 +116,6 @@
              el.innerHTML = name[idx].slice(0,5)
            } 
          })
-        //  if(el.innerHTML == this.data.position[`${this.myId}`]) {
-        //    console.log(this.numbers)
-        //    this.numbers = el.innerHTML
-        //    el.innerHTML = `<div>${this.myId.slice(0,3)}</div>`
-        //  }
-
        })
        
       },
@@ -154,6 +148,10 @@
             })
           }
         })
+      },
+      sounds() {
+         var audio = new Audio();
+          audio.play('http://www.mariomayhem.com/downloads/sound_tracks/Super_Mario_Bros._1/01-main-theme-overworld.mp3');
       }
     },
     created() {
@@ -162,9 +160,11 @@
     watch: {
       data : function() {
         if(this.data) {
+          this.sounds()
           this.playerIdx =  this.data.players.indexOf(this.myId)
           this.gameRule()
           this.kotaks()
+
         }
       }
     }
