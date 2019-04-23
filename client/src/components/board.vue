@@ -59,8 +59,8 @@
 
       <!--  -->
       <div class="col-md-4">
-        <div class="mb-3 shadow text-light p-2" style="background-color: #F95A7E; border-radius: 5px">
-          Congratulation! You Won...
+        <div v-if="data.winner != ''" class="mb-3 shadow text-light p-2" style="background-color: #F95A7E; border-radius: 5px">
+          Congratulation! You Won... {{ data.winner  }}
         </div>
         <!-- <div class="border mb-3 p-2">
           <button class="btn btn-info">Play</button>
@@ -91,10 +91,11 @@
     data() {
       return {
         data: [],
+        playerWon : '',
         myId: localStorage.getItem('id'),
         playerIdx : '',
         hide: null,
-        icon: ['<i class="far fa-smile-beam"></i>', '<i class="fas fa-grin-tongue-wink"></i>']
+        icon: ['<i class="far fa-smile-beam">A</i>','<i class="far fa-smile-beam">B</i>', '<i class="fas fa-grin-tongue-wink">C</i>', '<i class="fas fa-grin-tongue-wink">D</i>']
       }
     },
     methods: {
@@ -111,9 +112,9 @@
        value.forEach( el => {
          allPlayers.forEach( (pos, idx) => {
            if(el.innerHTML == pos) {
-
-             el.innerHTML = name[idx].slice(0,3)
-           }
+             console.log(pos)
+             el.innerHTML = name[idx].slice(0,5)
+           } 
          })
         //  if(el.innerHTML == this.data.position[`${this.myId}`]) {
         //    console.log(this.numbers)
@@ -132,6 +133,7 @@
         this.data.count++
         this.data.position[`${this.myId}`] += +this.data.dice
         if(this.data.position[`${this.myId}`]>= 36) {
+          this.data.winner = this.myId
           this.data.position[`${this.myId}`] = 36
         }
         db.collection('rooms').doc(this.$route.params.id).set(this.data)

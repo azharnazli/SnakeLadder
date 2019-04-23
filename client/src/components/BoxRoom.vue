@@ -56,7 +56,8 @@
             ready: 0,
             dice: 1,
             isWinner: false,
-            waiting: []
+            waiting: [],
+            winner: ''
           })
           .then((doc) => {
             console.log(doc)
