@@ -4,15 +4,15 @@
       <v-toolbar-title class="black--text">SnakeBoard</v-toolbar-title>
     </v-btn>
     <v-spacer></v-spacer>
-    <v-btn flat color="primary" v-if="isLogin">
+    <v-btn flat color="primary" v-if="myEmail">
       <span>{{ myEmail }}</span>
       <v-icon left>sentiment_satisfied_alt</v-icon>
     </v-btn>
-    <v-btn flat color="error" v-if="isLogin" @click="logout">
+    <v-btn flat color="error" v-if="myEmail" @click="logout">
       <span>Logout</span>
       <v-icon right>exit_to_app</v-icon>
     </v-btn>
-    <router-link to='/sign-up' v-if="!isLogin" style="textDecoration: none">
+    <router-link to='/sign-up' v-if="!myEmail" style="textDecoration: none">
     <v-btn flat color="success">
       <span>Sign Up</span>
     <v-icon right>exit_to_app</v-icon>
@@ -27,7 +27,7 @@
   export default {
     data(){
       return {
-        myEmail: ''
+        myEmail: localStorage.getItem('email')
       }
     },
     methods: {
@@ -45,6 +45,8 @@
           .then(() => {
              this.$router.push('/') 
              localStorage.clear()
+             this.myEmail = ''
+              this.$store.commit('Logout')
           })
           .catch(err => {
             this.$swal({
@@ -66,7 +68,14 @@
     computed: mapState([
       'userDetails',
       'isLogin'
-    ])
+    ]),
+    watch: {
+      isLogin() {
+        if(this.isLogin) {
+          this.myEmail = localStorage.getItem('email')
+        }
+      }
+    }
 
   }
 </script>

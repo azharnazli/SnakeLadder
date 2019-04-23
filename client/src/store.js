@@ -44,13 +44,8 @@ export default new Vuex.Store({
         })
     },
     verifyLoggedIn() {
-      firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-          console.log('masukkkk')
-          console.log(user)
-        } else {
-          // No user is signed in.
-        }
+      firebase.auth().onAuthStateChanged(function() {
+
     })
   }
 }
