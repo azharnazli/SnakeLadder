@@ -1,5 +1,4 @@
 <template>
-
   <v-form v-model="valid">
     <v-container>
       <v-layout>
@@ -26,7 +25,6 @@
       </v-layout>
     </v-container>
   </v-form>
-
 </template>
 
 <script>
@@ -80,5 +78,4 @@
 </script>
 
 <style>
-
 </style>
